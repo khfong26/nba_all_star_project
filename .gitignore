@@ -1,0 +1,7 @@
+# Ignore the model file
+models/tuned_random_forest.pkl
+
+# Ignore any other large files
+*.pkl
+*.h5
+*.joblib

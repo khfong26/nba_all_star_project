@@ -4,9 +4,20 @@ import joblib
 import numpy as np
 import os
 
-# Dynamically construct the absolute path to the model
-model_path = os.path.join(os.path.dirname(__file__), '../models/tuned_random_forest.pkl')
+import joblib
+import requests
+
+url = "https://huggingface.co/khfong26/nba_all_star_model/resolve/main/tuned_random_forest.pkl"
+
+# Download the model when the app runs
+model_path = "tuned_random_forest.pkl"
+response = requests.get(url)
+with open(model_path, "wb") as f:
+    f.write(response.content)
+
+# Load the model
 model = joblib.load(model_path)
+
 
 # Dynamically construct the absolute path to the dataset
 data_path = os.path.join(os.path.dirname(__file__), '../data/merged_data.csv')
