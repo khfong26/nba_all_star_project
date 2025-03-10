@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import numpy as np
 import os
+
 # Dynamically construct the absolute path to the model
 model_path = os.path.join(os.path.dirname(__file__), '../models/tuned_random_forest.pkl')
 model = joblib.load(model_path)
@@ -26,10 +27,10 @@ def main():
     st.title("NBA All-Star Prediction App")
     st.write("Input a player's regular season statistics to predict if they'll become an All-Star.")
 
-    # Input fields
+    # Input fields (whole numbers)
     stats = []
     for feature in features:
-        value = st.number_input(f"{feature.replace('_reg', '').upper()}", min_value=0.0, value=0.0)
+        value = st.number_input(f"{feature.replace('_reg', '').upper()}", min_value=0, value=0, step=1)
         stats.append(value)
 
     # Predict button
@@ -42,14 +43,24 @@ def main():
 
     # Random player prediction
     if st.button("Predict Random Player"):
-        random_player = merged_df.sample(1)[features]
-        prediction, proba = predict_all_star(random_player.iloc[0])
-        st.write("### Random Player Stats:")
-        st.write(random_player)
-        if prediction == 1:
-            st.success(f"✅ This player is predicted to be an All-Star with {proba:.2%} confidence.")
+        random_player = merged_df.sample(1)
+
+        if "firstname_reg" in merged_df.columns and "lastname_reg" in merged_df.columns:
+            player_name = f"{random_player['firstname_reg'].values[0]} {random_player['lastname_reg'].values[0]}"
         else:
-            st.error(f"❌ This player is predicted NOT to be an All-Star. Confidence: {proba:.2%}")
+            player_name = "Unknown Player"
+
+        player_stats = random_player[features].iloc[0]
+        prediction, proba = predict_all_star(player_stats)
+
+        st.write(f"### Random Player: **{player_name}**")
+        st.write(random_player[["firstname_reg", "lastname_reg"] + features])  # Show full name & stats
+
+        if prediction == 1:
+            st.success(f"✅ {player_name} is predicted to be an All-Star with {proba:.2%} confidence.")
+        else:
+            st.error(f"❌ {player_name} is predicted NOT to be an All-Star. Confidence: {proba:.2%}")
+
 
     # File upload for bulk predictions
     st.write("### Upload a CSV File for Batch Prediction")
@@ -74,5 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
