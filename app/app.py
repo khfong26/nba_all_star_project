@@ -15,7 +15,7 @@ response = requests.get(url)
 with open(model_path, "wb") as f:
     f.write(response.content)
 
-# Load the model
+# Load the model safely
 model = joblib.load(model_path)
 
 

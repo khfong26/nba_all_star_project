@@ -1,5 +1,6 @@
 import joblib
 import requests
+from sklearn.ensemble import RandomForestClassifier  # or whatever model you used
 
 # Download the model from Hugging Face
 url = "https://huggingface.co/khfong26/nba_all_star_model/resolve/main/tuned_random_forest.pkl"
@@ -12,7 +13,7 @@ with open("old_model.pkl", "wb") as f:
 # Load the old model
 old_model = joblib.load("old_model.pkl")
 
-# Re-save it using Python 3.11 standards
-joblib.dump(old_model, "tuned_random_forest.pkl")
+# Re-save the model without serialization issues
+joblib.dump(old_model, "tuned_random_forest.pkl", compress=3)
 
-print("Model successfully re-saved in Python 3.11 format!")
+print("Model re-saved successfully!")
