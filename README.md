@@ -28,7 +28,7 @@ Check out the Streamlit app here! https://nba-allstar-predictor.streamlit.app/
 - Demonstrated predictive modeling of All-Star status with solid accuracy.
 - Provided visual insights into historical All-Star trends.
 ﻿# nba_all_star_project
-## NBA All-Star Project
+
 
 
 
