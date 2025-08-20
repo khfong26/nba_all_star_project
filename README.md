@@ -5,7 +5,7 @@ This project explores **NBA player performance data** to analyze trends in All-S
 ---
 
 ## Live Demo
-[Check out the Streamlit app here!] https://nba-allstar-predictor.streamlit.app/
+Check out the Streamlit app here! https://nba-allstar-predictor.streamlit.app/
 
 
 ## 🚀 Features
@@ -29,5 +29,6 @@ This project explores **NBA player performance data** to analyze trends in All-S
 - Provided visual insights into historical All-Star trends.
 ﻿# nba_all_star_project
 ## NBA All-Star Project
+
 
 
