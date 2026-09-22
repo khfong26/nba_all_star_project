@@ -17,7 +17,7 @@ Check out the Streamlit app here! https://nba-allstar-predictor.streamlit.app/
 ---
 
 ## 📊 Tech Stack
-- **Python:** Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
+- **Python:** Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, Streamlit
 - **Data Source:** Public NBA statistics datasets
 - **Tools:** Jupyter Notebook
 
